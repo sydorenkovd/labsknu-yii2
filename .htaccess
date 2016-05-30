@@ -19,10 +19,10 @@
    </VirtualHost>
 
    <VirtualHost *:80>
-       ServerName backend.dev
-       DocumentRoot "/path/to/yii-application/backend/web/"
+       ServerName back.labknu
+       DocumentRoot "C:/openserver/domains/localhost/labknu/backend/web/"
 
-       <Directory "/path/to/yii-application/backend/web/">
+       <Directory "C:/openserver/domains/localhost/labknu/backend/web/">
            # use mod_rewrite for pretty URL support
            RewriteEngine on
            # If a directory or a file exists, use the request directly
