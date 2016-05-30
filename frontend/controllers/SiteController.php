@@ -72,7 +72,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $this->layout = '';
+        $s = print_r(Yii::$app->db);
+        return $this->render('index', compact('s'));
     }
 
     /**
