@@ -72,8 +72,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = '';
-        $s = print_r(Yii::$app->db);
+        $this->layout = 'clear';
+        $s = strpos(Yii::$app->db->dsn);
         return $this->render('index', compact('s'));
     }
 
