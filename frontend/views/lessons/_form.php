@@ -12,10 +12,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'teacher')->textInput() ?>
-
-    <?= $form->field($model, 'course')->textInput() ?>
-
+<!--    --><?//= $form->field($model, 'teacher')->textInput() ?>
+    <?= $form->field($model, 'teacher')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\common\models\Teachers::find()->all(), 'id', 'name'),
+        ['prompt' => Yii::t('app', 'Select a Teacher'),
+            'id' => 'name',
+        ]
+    ) ?>
+<!--    --><?//= $form->field($model, 'course')->textInput() ?>
+    <?= $form->field($model, 'course')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\common\models\Courses::find()->all(), 'id', 'title'),
+        ['prompt' => Yii::t('app', 'Select a Teacher'),
+            'id' => 'title',
+        ]
+    ) ?>
     <?= $form->field($model, 'room')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lesson_date')->textInput() ?>
