@@ -12,6 +12,7 @@ use common\models\Courses;
  */
 class CoursesSearch extends Courses
 {
+    public $global;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class CoursesSearch extends Courses
     {
         return [
             [['id', 'length'], 'integer'],
-            [['title', 'description'], 'safe'],
+            [['title', 'description', 'global'], 'safe'],
         ];
     }
 
@@ -56,7 +57,12 @@ class CoursesSearch extends Courses
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->orFilterWhere([
+            'id' => $this->global,
+        ]);
 
+        $query->orFilterWhere(['like', 'title', $this->global])
+            ->orFilterWhere(['like', 'description', $this->global]);
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

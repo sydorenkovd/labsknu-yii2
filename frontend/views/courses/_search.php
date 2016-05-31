@@ -14,14 +14,14 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'length') ?>
-
-    <?= $form->field($model, 'description') ?>
+    <?= $form->field($model, 'global')->textInput(['style'=>['width' => '300px']]) ?>
+<!--    --><?//= $form->field($model, 'id') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'title') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'length') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
