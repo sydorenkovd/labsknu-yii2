@@ -33,10 +33,11 @@ class Lessons extends \yii\db\ActiveRecord
     {
         return [
             [['teacher', 'course'], 'integer'],
-            [['lesson_date'], 'safe'],
+//            [['teacher', 'course'], 'require'],
+            [['lesson_date','teacher', 'course'], 'safe'],
             [['room'], 'string', 'max' => 10],
-            [['teacher'], 'exist', 'skipOnError' => true, 'targetClass' => Teachers::className(), 'targetAttribute' => ['teacher' => 'id']],
-            [['course'], 'exist', 'skipOnError' => true, 'targetClass' => Courses::className(), 'targetAttribute' => ['course' => 'id']],
+//            [['teacher'], 'exist', 'skipOnError' => true, 'targetClass' => Teachers::className(), 'targetAttribute' => ['teacher' => 'id']],
+//            [['course'], 'exist', 'skipOnError' => true, 'targetClass' => Courses::className(), 'targetAttribute' => ['course' => 'id']],
         ];
     }
 

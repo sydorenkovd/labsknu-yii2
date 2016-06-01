@@ -10,15 +10,18 @@ use yii\widgets\ActiveForm;
 
 <div class="lessons-form">
 
-    <?php $form = ActiveForm::begin(['enableAjaxValidation'=> true, 'options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
 <!--    --><?//= $form->field($model, 'teacher')->textInput() ?>
-    <?= $form->field($model, 'teacher')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\common\models\Teachers::find()->all(), 'id', 'name'),
-        ['prompt' => Yii::t('app', 'Select a Teacher'),
-            'id' => 'name',
-        ]
-    ) ?>
+<!--    --><?//= $form->field($model, 'teacher')->dropDownList(
+//        \yii\helpers\ArrayHelper::map(\common\models\Teachers::find()->all(), 'id', 'name'),
+//        ['prompt' => Yii::t('app', 'Select a Teacher'),
+//            'id' => 'name',
+//        ]
+//    ) ?>
+    <?= $form->field($model, 'teacher')->label('Teacher')->dropDownList(
+        \common\models\Teachers::find()->select(['name', 'id'])->with('teachers')->indexBy('id')->column(), ['prompt' => 'List of teachers']
+    )->hint('Choose the teacher') ?>
 <!--    --><?//= $form->field($model, 'course')->textInput() ?>
     <?= $form->field($model, 'course')->dropDownList(
         \yii\helpers\ArrayHelper::map(\common\models\Courses::find()->all(), 'id', 'title'),
