@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="lessons-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableAjaxValidation'=> true, 'options' => ['enctype' => 'multipart/form-data']]); ?>
 
 <!--    --><?//= $form->field($model, 'teacher')->textInput() ?>
     <?= $form->field($model, 'teacher')->dropDownList(
@@ -44,3 +44,26 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php $script = <<< JS
+$('form#{$model->formName()}').on('beforeSubmit', function(e){
+ var \$form = $(this);
+ $.post(
+ \$form.attr("action"), //serialize Yii2 form
+ \$form.serialize()
+ )
+    .done(function(result){
+    if(result.message == 1){
+        $(\$form).trigger("reset");
+        $.pjax.reload({container:'#w0'});
+    } else {
+
+    $("#message").html(result);
+    }
+    }).fail(function(){
+    console.log('server error');
+    });
+    return false;
+});
+JS;
+$this->registerJs($script);

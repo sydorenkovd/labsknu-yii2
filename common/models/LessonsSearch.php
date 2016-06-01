@@ -12,6 +12,7 @@ use common\models\Lessons;
  */
 class LessonsSearch extends Lessons
 {
+    public $global;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class LessonsSearch extends Lessons
     {
         return [
             [['id', 'teacher', 'course'], 'integer'],
-            [['room', 'lesson_date'], 'safe'],
+            [['room', 'lesson_date', 'global'], 'safe'],
         ];
     }
 
@@ -56,7 +57,6 @@ class LessonsSearch extends Lessons
             // $query->where('0=1');
             return $dataProvider;
         }
-
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
