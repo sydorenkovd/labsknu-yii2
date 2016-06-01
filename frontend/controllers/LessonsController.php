@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Lessons;
 use common\models\LessonsSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,8 +37,15 @@ class LessonsController extends Controller
     public function actionIndex()
     {
         $searchModel = new LessonsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Lessons::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query->with('teachers', 'courses'),
+        ]);
+//        $dataProvider->sort->attributes['teachers.name'] = [
+//            'asc' => ['teachers.name' => SORT_ASC],
+//            'desc' => ['teachers.name' => SORT_DESC],
+//        ];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

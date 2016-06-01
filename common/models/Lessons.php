@@ -57,7 +57,7 @@ class Lessons extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeacher0()
+    public function getTeachers()
     {
         return $this->hasOne(Teachers::className(), ['id' => 'teacher']);
     }
@@ -65,7 +65,7 @@ class Lessons extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCourse0()
+    public function getCourses()
     {
         return $this->hasOne(Courses::className(), ['id' => 'course']);
     }
