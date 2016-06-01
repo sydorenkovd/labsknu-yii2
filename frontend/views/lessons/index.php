@@ -5,6 +5,7 @@ use kartik\grid\GridView;
 //use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\LessonsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,11 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Lessons', ['create'], ['class' => 'btn btn-success']) ?>
+<!--        --><?//= Html::a('Create Lessons', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Create Lesson',['value' => Url::to('/lessons/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
     </p>
     <?php
     Modal::begin([
-        'header' => '<h4>Posts</h4>',
+        'header' => '<h4>Lessons</h4>',
         'id' => 'modal',
         'size' => 'modal-lg',
 
