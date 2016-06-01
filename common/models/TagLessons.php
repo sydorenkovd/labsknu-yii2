@@ -17,7 +17,7 @@ class TagPost extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%tbl_tagPost}}';
+        return '{{%tbl_tagLessons}}';
     }
 
     /**

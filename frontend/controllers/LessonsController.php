@@ -40,8 +40,10 @@ class LessonsController extends Controller
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $query = Lessons::find();
         $dataProvider = new ActiveDataProvider([
-            'query' => $query->with('teachers', 'courses'),
+            'query' => $query,
         ]);
+        $query->joinWith(['teachers' => function($query) { $query->from(['teachers' => 'teachers']); }], []);
+        $query->joinWith(['courses' => function($query) { $query->from(['courses' => 'courses']); }], []);
 //        $dataProvider->sort->attributes['teachers.name'] = [
 //            'asc' => ['teachers.name' => SORT_ASC],
 //            'desc' => ['teachers.name' => SORT_DESC],

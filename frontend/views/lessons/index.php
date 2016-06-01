@@ -34,9 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         $searchModel = new \common\models\TeachersSearch();
                         $searchModel->id = $model->teacher;
                         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-                        $searchModel2 = new \common\models\CoursesSearch();
-                        $searchModel2->id = $model->course;
-                        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
                         return Yii::$app->controller->renderPartial('_teachers', [
                             'searchModel' => $searchModel,
                             'dataProvider' => $dataProvider,
@@ -46,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
 
             'id',
-            'teacher',
-            'course',
+            'teachers.name',
+            'courses.title',
             'room',
             'lesson_date',
 
