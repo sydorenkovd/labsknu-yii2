@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+//use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CoursesSearch */
@@ -21,8 +22,25 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'export' => false,
+        'perfectScrollbar' => true,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'value' => function($model, $key, $index, $column){
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function($model, $key, $index, $column){
+                    $searchModel = new \common\models\LessonsSearch();
+                    $searchModel->teacher = $model->id;
+                    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+                    return Yii::$app->controller->renderPartial('_lessons', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+
+                    ]);
+                },
+            ],
 
             'id',
             'title',

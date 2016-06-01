@@ -34,10 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         $searchModel = new \common\models\TeachersSearch();
                         $searchModel->id = $model->teacher;
                         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-                        return Yii::$app->controller->renderPartial('_poitems', [
-                            'searchModel' => $searchModel
-                            ,
-                            'dataProvider' => $dataProvider
+                        $searchModel2 = new \common\models\CoursesSearch();
+                        $searchModel2->id = $model->course;
+                        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
+                        return Yii::$app->controller->renderPartial('_teachers', [
+                            'searchModel' => $searchModel,
+                            'dataProvider' => $dataProvider,
+
                         ]);
                     },
                 ],
