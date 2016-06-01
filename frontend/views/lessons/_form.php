@@ -28,8 +28,15 @@ use yii\widgets\ActiveForm;
     ) ?>
     <?= $form->field($model, 'room')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lesson_date')->textInput() ?>
-
+    <?= $form->field($model, 'lesson_date')->widget(
+        \yii\jui\DatePicker::className(), [
+            'inline' => false,
+//            'clientOptions' => [
+//                'autoclose' => true,
+            'dateFormat' => 'yyyy-MM-dd',
+//            ]
+        ]
+    ); ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
