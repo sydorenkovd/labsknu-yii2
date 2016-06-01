@@ -2,8 +2,10 @@
 
 namespace common\models;
 
+use creocoder\taggable\TaggableBehavior;
 use Yii;
-
+use common\models\Tags;
+use common\models\TagLessons;
 /**
  * This is the model class for table "lessons".
  *
@@ -25,7 +27,15 @@ class Lessons extends \yii\db\ActiveRecord
     {
         return 'lessons';
     }
-
+    public function behaviors()
+    {
+        return [
+            'tagLessons' => [
+                'class' => TaggableBehavior::className(),
+                'tagRelation' => 'tagLessons'
+            ]
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -51,10 +61,21 @@ class Lessons extends \yii\db\ActiveRecord
             'teacher' => 'Teacher',
             'course' => 'Course',
             'room' => 'Room',
+//            'tags' => 'Tags',
             'lesson_date' => 'Lesson Date',
         ];
     }
-
+    public function getTagLessons()
+    {
+        return $this->hasMany(Tags::className(), ['id' => 'tag_id'])
+            ->viaTable(TagLessons::tableName(), ['lessons_id' => 'id']);
+    }
+    public function getTagLesson()
+    {
+        return $this->hasMany(
+            TagLessons::className(), ['lessons_id' => 'id']
+        );
+    }
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%tbl_tagPost}}".
+ * This is the model class for table "{{%tbl_tagLessons}}".
  *
  * @property integer $tag_id
  * @property integer $post_id
  */
-class TagPost extends \yii\db\ActiveRecord
+class TagLessons extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,11 +37,11 @@ class TagPost extends \yii\db\ActiveRecord
     {
         return [
             'tag_id' => 'Tag ID',
-            'post_id' => 'Post ID',
+            'post_id' => 'Lessons ID',
         ];
     }
-    public function getPost(){
-        return $this->hasOne(Posts::className(), ['id' => 'post_id']);
+    public function getLessons(){
+        return $this->hasOne(Lessons::className(), ['id' => 'post_id']);
     }
     public function getTag(){
         return $this->hasOne(Tags::className(), ['id' => 'tag_id']);

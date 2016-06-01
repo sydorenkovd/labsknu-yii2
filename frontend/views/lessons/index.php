@@ -20,7 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 <!--        --><?//= Html::a('Create Lessons', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('Create Lesson',['value' => Url::to('/lessons/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
+        <?= Html::button('Create Lesson',['value' => Url::to('/lessons/create'),
+            'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
+    <div class="tags">
+        <?php
+        $tags = [];
+//        foreach($model->getTagLesson()->all() as $postTag) {
+//            $tag = $postTag->getTag()->one();
+//            $tags[] = Html::a($tag->name, Yii::$app->urlManager
+//                ->createUrl(['lessons/order-tags', 'tag' => $tag->name]), ['class' => 'btn btn-default btn-sm']);
+//        } ?>
+<? print_r($model->getTagLessons()->all())?>
+<!--        Тэги: --><?//= implode($tags, ' | ') ?>
+    </div>
     </p>
     <?php
     Modal::begin([

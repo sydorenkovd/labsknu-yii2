@@ -36,6 +36,7 @@ class LessonsController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Lessons();
         $searchModel = new LessonsSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $query = Lessons::find();
@@ -49,6 +50,7 @@ class LessonsController extends Controller
 //            'desc' => ['teachers.name' => SORT_DESC],
 //        ];
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
